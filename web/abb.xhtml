@@ -29,13 +29,7 @@
                             
                  <p:commandButton value="Niveles" action="#{arbolBinarioControlador.arbol.imprimirNivel()}"
                                  update="@all" ajax="false"/> 
-                 
-                 <p:commandButton value="Multiplicar" action="#{arbolBinarioControlador.multiplicar()}"
-                                 update="@all" ajax="false"/> 
-                 
-                 <p:commandButton value="BorrarNivel" action="#{arbolBinarioControlador.borrarNivel()}"
-                                 update="@all" ajax="false"/>
-                 
+                         
                  <p:commandButton value="Balance" action="#{arbolBinarioControlador.borrarNivel()}"
                                  update="@all" ajax="false"/> 
                  
@@ -45,7 +39,13 @@
                  <p:commandButton value="BorrarMenor" action="#{arbolBinarioControlador.borrarMenor()}"
                                  update="@all" ajax="false"/> 
                  
-                 <p:commandButton value="Hojas" action="#{arbolBinarioControlador.darHojas()}" update="@all" ajax="false"/>
+                 <p:commandButton value="Hojas" action="#{arbolBinarioControlador.darHojas()}" 
+                                  update="@all" ajax="false"/>
+                 
+                 <p:commandButton value="CantidadNodos" action="#{arbolBinarioControlador.arbol.cantidadNodos()}" 
+                                  update="@all" ajax="false"/>
+                 <p:commandButton value="CantidadHojas" action="#{arbolBinarioControlador.arbol.cantidadNodos()}" 
+                                  update="@all" ajax="false"/>
                  <p></p>
                <p:outputLabel value="Nro Nodos: "/>
                <p:outputLabel value="#{arbolBinarioControlador.arbol.contarNodos()}"/>                
@@ -56,20 +56,35 @@
         </h:form>
         <h:form>
             <p:panel header="Llenar árbol">
-                <p:inputTextarea required="true" cols="40" value="#{arbolBinarioControlador.datoscsv}"/>
+                <p:inputTextarea required="true" cols="30" value="#{arbolBinarioControlador.datoscsv}"/>
                 <p:commandButton value="LLenar Arbol" action="#{arbolBinarioControlador.extraerDatos()}"
+                                 update="@all" ajax="false"/>
+
+            </p:panel>
+        </h:form>
+        
+         <h:form>
+            <p:panel header="Multiplicar">
+                <p:inputTextarea required="true" cols="30" value="#{arbolBinarioControlador.dato}"/>
+                <p:commandButton value="Multiplicar" action="#{arbolBinarioControlador.multiplicar()}"
+                                 update="@all" ajax="false"/>
+
+            </p:panel>
+        </h:form>
+        <h:form>
+            <p:panel header="BorrarNivel">
+                <p:inputTextarea required="true" cols="30" value="#{arbolBinarioControlador.dato}"/>
+                <p:commandButton value="BorrarNivel" action="#{arbolBinarioControlador.borrarNivel()}"
                                  update="@all" ajax="false"/>
 
             </p:panel>
         </h:form>
         <h:form>
             <p:panel header="BorrarDato">
-                <p:inputTextarea required="true" cols="40" value="#{arbolBinarioControlador.datoscsv}"/>
-                <p:commandButton value="BorrarDato" action="#{arbolBinarioControlador.extraerDatos()}"
+                <p:inputTextarea required="true" cols="30" value="#{arbolBinarioControlador.dato}"/>
+                <p:commandButton value="BorrarDato" action="#{arbolBinarioControlador.arbol.borrar(0)}"
                                  update="@all" ajax="false"/>
-                
-
-            </p:panel>
+                            </p:panel>
         </h:form>
         
         <h:form >
@@ -93,6 +108,21 @@
 
             </p:panel>
         </h:form>
+        <p:panel header="Cantidad de Nodos">
+                <p:dataTable var="nodo" value="#{arbolBinarioControlador.arbol.cantidadNodos()}">
+                    <p:column headerText="Número">
+                        <h:outputText value="#{nodo}" />
+                    </p:column>
+                </p:dataTable>                
+            </p:panel>
+        
+         <p:panel header="Cantidad de Hojas">
+                <p:dataTable var="nodo" value="#{arbolBinarioControlador.arbol.cantidadNodosHoja()}">
+                    <p:column headerText="Número">
+                        <h:outputText value="#{nodo}" />
+                    </p:column>
+                </p:dataTable>                
+            </p:panel>
         
                  <h:panelGroup rendered="#{arbolBinarioControlador.verInOrden}">
             <p:panel header="InOrden">
@@ -105,7 +135,7 @@
 
             </p:panel>
         </h:panelGroup>
-        <h:panelGroup rendered="#{arbolBinarioControlador.verPreOrden}">
+                <h:panelGroup rendered="#{arbolBinarioControlador.verPreOrden}">
         <p:panel header="PreOrden">
             <p:dataTable var="data" value="#{arbolBinarioControlador.arbol.preOrden()}">
                 <p:column headerText="PreOrden">

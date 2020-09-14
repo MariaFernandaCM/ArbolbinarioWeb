@@ -39,6 +39,7 @@ public class ArbolBinarioControlador implements Serializable {
     private boolean verInOrden = false;
     private boolean verPreOrden = false;
     private boolean verPostOrden =false;
+    
   
     private String datoscsv ="5,9,10,3,1,-3,4,15,22,18,11";
     private int terminado;
@@ -94,6 +95,8 @@ public class ArbolBinarioControlador implements Serializable {
     public void setVerInOrden(boolean verInOrden) {
         this.verInOrden = verInOrden;
     }
+   
+    
 
      public boolean isVerPreOrden() {
         return verPreOrden;
@@ -125,7 +128,13 @@ public class ArbolBinarioControlador implements Serializable {
     public void setArbol(ArbolBinario arbol) {
         this.arbol = arbol;
     }
-
+    public String CantidadNodos(){
+        return this.arbol.cantidadNodos();
+    }
+    public String CantidadNodosHoja(){
+        return this.arbol.cantidadNodosHoja();
+    }
+    
     /**
      * Creates a new instance of ArbolBinarioControlador
      */
@@ -170,6 +179,7 @@ public class ArbolBinarioControlador implements Serializable {
         } catch (ArbolBinarioException ex) {
             JsfUtil.addErrorMessage(ex.getMessage());
         }
+    
     }
          
     public DefaultDiagramModel getModel() {
@@ -307,12 +317,7 @@ public class ArbolBinarioControlador implements Serializable {
     {
         if(arbol.getRaiz()!=null)
         {
-            ///Receta promediar
-            // buscar nodo  utilizando como parametro datopromediar
-            // contar a partir de un nodo
-            // sumar a partir de ese nodo
-            // calcular el promedio
-            // mostrar
+            
             Nodo nodoencontrado = arbol.buscarNodo(datoPromediar, arbol.getRaiz());
             if(nodoencontrado != null)
             {
