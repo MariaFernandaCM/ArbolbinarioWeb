@@ -26,6 +26,26 @@
                 <p></p>
                  <p:commandButton value="Podar" action="#{arbolBinarioControlador.podar()}"
                                  update="@all" ajax="false"/> 
+                            
+                 <p:commandButton value="Niveles" action="#{arbolBinarioControlador.arbol.imprimirNivel()}"
+                                 update="@all" ajax="false"/> 
+                 
+                 <p:commandButton value="Multiplicar" action="#{arbolBinarioControlador.multiplicar()}"
+                                 update="@all" ajax="false"/> 
+                 
+                 <p:commandButton value="BorrarNivel" action="#{arbolBinarioControlador.borrarNivel()}"
+                                 update="@all" ajax="false"/>
+                 
+                 <p:commandButton value="Balance" action="#{arbolBinarioControlador.borrarNivel()}"
+                                 update="@all" ajax="false"/> 
+                 
+                 <p:commandButton value="BorrarMayor" action="#{arbolBinarioControlador.borrarMayor()}"
+                                 update="@all" ajax="false"/> 
+                 
+                 <p:commandButton value="BorrarMenor" action="#{arbolBinarioControlador.borrarMenor()}"
+                                 update="@all" ajax="false"/> 
+                 
+                 <p:commandButton value="Hojas" action="#{arbolBinarioControlador.darHojas()}" update="@all" ajax="false"/>
                  <p></p>
                <p:outputLabel value="Nro Nodos: "/>
                <p:outputLabel value="#{arbolBinarioControlador.arbol.contarNodos()}"/>                
@@ -104,8 +124,25 @@
 
             </p:dataTable>
         </p:panel>
+            
          </h:panelGroup>
+<p:panel header="Niveles">
+    
+    <p:dataTable var="data" value="#{arbolBinarioControlador.arbol.imprimirNivel()}">
+                <p:column headerText="Niveles">
+                    <h:outputText value="#{data}" />
+                </p:column>
 
+            </p:dataTable>
+        </p:panel>
+        
+        <p:panel header="Hojas del Arbol">
+                <p:dataTable var="nodo" value="#{arbolBinarioControlador.arbol.hojas}">
+                    <p:column headerText="Número">
+                        <h:outputText value="#{nodo}" />
+                    </p:column>
+                </p:dataTable>                
+            </p:panel>
         <p:diagram id="pnlArbolTerminados" value="#{arbolBinarioControlador.modelArbol2}" style="height:400px" styleClass="ui-widget-content" />
 
     </ui:define>

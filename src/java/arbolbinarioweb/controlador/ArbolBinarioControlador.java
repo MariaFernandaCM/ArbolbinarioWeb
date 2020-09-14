@@ -39,7 +39,8 @@ public class ArbolBinarioControlador implements Serializable {
     private boolean verInOrden = false;
     private boolean verPreOrden = false;
     private boolean verPostOrden =false;
-    private String datoscsv;
+  
+    private String datoscsv ="5,9,10,3,1,-3,4,15,22,18,11";
     private int terminado;
     private ArbolBinario arbolTerminados = new ArbolBinario();
 
@@ -52,8 +53,7 @@ public class ArbolBinarioControlador implements Serializable {
     public void setDatoPromediar(int datoPromediar) {
         this.datoPromediar = datoPromediar;
     }
-    
-    
+        
     
     public ArbolBinario getArbolTerminados() {
         return arbolTerminados;
@@ -86,7 +86,7 @@ public class ArbolBinarioControlador implements Serializable {
     public void setDatoscsv(String datoscsv) {
         this.datoscsv = datoscsv;
     }
-
+ 
     public boolean isVerInOrden() {
         return verInOrden;
     }
@@ -94,6 +94,7 @@ public class ArbolBinarioControlador implements Serializable {
     public void setVerInOrden(boolean verInOrden) {
         this.verInOrden = verInOrden;
     }
+
      public boolean isVerPreOrden() {
         return verPreOrden;
     }
@@ -170,7 +171,7 @@ public class ArbolBinarioControlador implements Serializable {
             JsfUtil.addErrorMessage(ex.getMessage());
         }
     }
-
+         
     public DefaultDiagramModel getModel() {
         return model;
     }
@@ -338,4 +339,44 @@ public void podar(){
     pintarArbol();
 
 }
+public void multiplicar(){
+    arbol.multiplicar();
+    pintarArbol();
+}
+public void borrarMayor(){
+    arbol.borrarMayor();
+    pintarArbol();
+}
+public void borrarMenor(){
+    arbol.borrarMenor();
+    pintarArbol();
+}
+public void borrarNivel(){
+    arbol.borrarNivel();
+    pintarArbol();
+}
+ public String recorrido(ArrayList it, String msg){
+        int i =0;
+        String r = msg + "\n";
+        while(i < it.size()){
+            r += "\t" + it.get(i).toString() + "\n";
+            i++;
+        }
+        return (r);
+    }
+// Hojas
+    public String darHojas(){
+        ArrayList it = this.arbol.getHojas();
+        return (recorrido(it, "Las hojas del Arbol son: "));
+    }
+    
+    public String esta(Integer dato){
+        boolean siEsta = this.arbol.buscar(dato);
+        String r = "El Nodo : " + dato.toString() + "\n";
+        r += siEsta ? " Si se encuentra en el arbol" : " No se encuentra en el arbol";
+        return (r);
+    }
+    
+    
+    
 }
